@@ -1,5 +1,4 @@
 
-"use strict";
 
 const express = require("express");
 const session = require("express-session");
@@ -23,7 +22,7 @@ const dashboardRoutes = require("./routes/dashboard.routes");
 const pagesRoutes = require("./routes/pages.routes");
 
 const app = express();
-
+app.set("trust proxy", 1);
 const PORT = process.env.PORT || 3000;
 
 
@@ -46,9 +45,8 @@ app.use(
 
 app.use(
     session({
-        secret:
-            process.env.SESSION_SECRET ||
-            "vtc-manager-secret-change-moi",
+     
+          secret: process.env.SESSION_SECRET,
 
         resave: false,
 
@@ -56,7 +54,7 @@ app.use(
 
         cookie: {
             httpOnly: true,
-            secure: false,
+            secure: true,
             sameSite: "lax",
             path: "/",
             maxAge: 1000 * 60 * 60 * 8
