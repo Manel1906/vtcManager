@@ -1,0 +1,1326 @@
+
+/* =========================================================
+   VTC MANAGER — DASHBOARD
+   Feuille de style complète et corrigée
+========================================================= */
+
+/* =========================================================
+   1. VARIABLES ET BASE
+========================================================= */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+}
+
+:root {
+    --blue: #1F4E78;
+    --blue-dark: #173A5B;
+    --blue-light: #EAF2F8;
+    --blue-very-light: #F5F9FC;
+
+    --text: #222222;
+    --text-light: #5C6670;
+
+    --border: #D9E2E8;
+
+    --background: #F3F6F8;
+    --white: #FFFFFF;
+
+    --green: #218838;
+    --green-light: #EAF7EE;
+
+    --orange: #B26A00;
+    --orange-light: #FFF4E5;
+
+    --red: #C62828;
+    --red-light: #FDECEC;
+
+    --shadow:
+        0 4px 15px rgba(0, 0, 0, 0.04);
+
+    --shadow-large:
+        0 10px 35px rgba(0, 0, 0, 0.08);
+
+    --radius: 12px;
+}
+
+body {
+    margin: 0;
+    padding: 30px;
+
+    background: var(--background);
+    color: var(--text);
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+img {
+    max-width: 100%;
+}
+
+
+/* =========================================================
+   2. APPLICATION
+========================================================= */
+
+.app {
+    width: 100%;
+    max-width: 1400px;
+    min-width: 0;
+
+    margin: 0 auto;
+
+    background: var(--white);
+    border-radius: 18px;
+
+    box-shadow: var(--shadow-large);
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   3. HEADER
+========================================================= */
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 25px;
+    padding: 25px 30px;
+
+    background: var(--blue);
+    color: var(--white);
+}
+
+.header-brand {
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+    min-width: 0;
+}
+
+.header-logo {
+    width: 48px;
+    height: 48px;
+
+    flex-shrink: 0;
+    object-fit: contain;
+
+    background: var(--white);
+    border-radius: 10px;
+}
+
+.header h1 {
+    margin: 0;
+
+    font-size: 28px;
+    line-height: 1.2;
+}
+
+.header p {
+    margin: 6px 0 0;
+
+    color: #DCEAF5;
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   4. NAVIGATION
+========================================================= */
+
+.navigation {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.navigation a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    min-height: 40px;
+    padding: 0 14px;
+
+    border-radius: 8px;
+
+    color: var(--white);
+    text-decoration: none;
+    font-size: 14px;
+    white-space: nowrap;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+.navigation a:hover {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.navigation a.active {
+    background: var(--white);
+    color: var(--blue);
+    font-weight: 700;
+}
+
+.navigation a:focus-visible,
+.navigation button:focus-visible {
+    outline: 3px solid #BBD9F2;
+    outline-offset: 3px;
+}
+
+
+/* =========================================================
+   5. UTILISATEUR CONNECTÉ
+========================================================= */
+
+.nav-user {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    min-width: 0;
+    padding: 4px 8px;
+
+    color: var(--white);
+}
+
+.nav-user-photo {
+    width: 36px;
+    height: 36px;
+
+    flex-shrink: 0;
+    object-fit: cover;
+
+    border: 2px solid rgba(255, 255, 255, 0.65);
+    border-radius: 50%;
+}
+
+.nav-user-name {
+    max-width: 150px;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.logout-button {
+    min-height: 40px;
+    padding: 0 13px;
+
+    background: rgba(255, 255, 255, 0.1);
+
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-radius: 8px;
+
+    color: var(--white);
+    font-size: 13px;
+    font-weight: 700;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+.logout-button:hover {
+    background: var(--white);
+    color: var(--blue);
+}
+
+
+/* =========================================================
+   6. CONTENU PRINCIPAL
+========================================================= */
+
+.dashboard-content {
+    width: 100%;
+    min-width: 0;
+    padding: 30px;
+}
+
+
+/* =========================================================
+   7. BIENVENUE
+========================================================= */
+
+.welcome {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 20px;
+
+    margin-bottom: 20px;
+    padding: 22px 25px;
+
+    background: var(--white);
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+
+    box-shadow: var(--shadow);
+}
+
+.welcome h2 {
+    margin: 0 0 5px;
+
+    color: var(--blue-dark);
+    font-size: 21px;
+}
+
+.welcome p {
+    margin: 0;
+
+    color: var(--text-light);
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   8. BOUTON NOUVELLE RÉSERVATION
+========================================================= */
+
+.new-reservation {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    min-height: 42px;
+    padding: 0 18px;
+
+    background: var(--blue);
+
+    border-radius: 8px;
+
+    color: var(--white);
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 700;
+    white-space: nowrap;
+
+    transition: background 0.2s ease;
+}
+
+.new-reservation:hover {
+    background: var(--blue-dark);
+}
+
+
+/* =========================================================
+   9. CARTES STATISTIQUES
+========================================================= */
+
+.stats-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 16px;
+    margin-bottom: 25px;
+}
+
+.stat-card {
+    display: flex;
+    align-items: center;
+
+    gap: 16px;
+
+    min-width: 0;
+    min-height: 125px;
+    padding: 20px;
+
+    background: var(--white);
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+
+    box-shadow: var(--shadow);
+}
+
+.stat-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 48px;
+    height: 48px;
+
+    flex-shrink: 0;
+
+    background: var(--blue-light);
+    color: var(--blue);
+
+    border-radius: 10px;
+
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.stat-card span {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: var(--text-light);
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.stat-card strong {
+    display: block;
+
+    color: var(--blue-dark);
+    font-size: 25px;
+    line-height: 1.25;
+
+    overflow-wrap: anywhere;
+}
+
+.revenue-card .stat-icon {
+    background: var(--green-light);
+    color: var(--green);
+}
+
+
+/* =========================================================
+   10. SECTION RÉSERVATIONS
+========================================================= */
+
+.reservations-section {
+    width: 100%;
+    min-width: 0;
+
+    padding: 25px;
+
+    background: var(--white);
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+
+    box-shadow: var(--shadow);
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 18px;
+    flex-wrap: wrap;
+
+    margin-bottom: 20px;
+}
+
+.section-header > div:first-child {
+    flex: 1 1 220px;
+    min-width: 0;
+}
+
+.section-header h2 {
+    margin: 0 0 5px;
+
+    color: var(--blue-dark);
+    font-size: 20px;
+    line-height: 1.35;
+}
+
+.section-header p {
+    margin: 0;
+
+    color: var(--text-light);
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   11. FILTRE ADMINISTRATEUR
+========================================================= */
+
+/*
+   Par défaut, le filtre reste masqué.
+   Le JavaScript doit l'afficher uniquement pour un admin.
+*/
+
+#adminReservationFilters {
+    display: none;
+
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+
+    flex: 1 1 300px;
+    min-width: 0;
+
+    margin: 0;
+    padding: 12px 14px;
+
+    background: var(--blue-very-light);
+
+    border: 1px solid var(--border);
+    border-radius: 10px;
+}
+
+#adminReservationFilters label {
+    display: block;
+
+    color: var(--blue-dark);
+
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.5;
+}
+
+#adminReservationFilters select {
+    flex: 1 1 220px;
+
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    min-height: 40px;
+
+    padding: 8px 12px;
+
+    background: var(--white);
+
+    border: 1px solid #C6D2DC;
+    border-radius: 8px;
+
+    color: var(--text);
+
+    font-family: inherit;
+    font-size: 13px;
+
+    cursor: pointer;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+#adminReservationFilters select:hover {
+    border-color: var(--blue);
+}
+
+#adminReservationFilters select:focus {
+    border-color: var(--blue);
+    outline: none;
+
+    box-shadow:
+        0 0 0 3px rgba(31, 78, 120, 0.12);
+}
+
+
+/* =========================================================
+   12. BOUTON ACTUALISER
+========================================================= */
+
+.refresh-button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    flex-shrink: 0;
+
+    min-height: 40px;
+    padding: 0 14px;
+
+    background: var(--white);
+
+    border: 1px solid var(--border);
+    border-radius: 8px;
+
+    color: var(--blue);
+
+    font-size: 13px;
+    font-weight: 700;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.refresh-button:hover {
+    background: var(--blue-light);
+    border-color: var(--blue);
+}
+
+
+/* =========================================================
+   13. CONTENEUR DU TABLEAU
+========================================================= */
+
+#reservationsContainer {
+    width: 100%;
+    min-width: 0;
+    max-height: 520px;
+
+    overflow-x: auto;
+    overflow-y: auto;
+
+    background: var(--white);
+
+    border: 1px solid var(--border);
+    border-radius: 10px;
+
+    scrollbar-width: thin;
+    scrollbar-color: var(--blue) var(--blue-light);
+}
+
+#reservationsContainer::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+#reservationsContainer::-webkit-scrollbar-track {
+    background: var(--blue-light);
+    border-radius: 10px;
+}
+
+#reservationsContainer::-webkit-scrollbar-thumb {
+    background: var(--blue);
+    border-radius: 10px;
+}
+
+#reservationsContainer::-webkit-scrollbar-thumb:hover {
+    background: var(--blue-dark);
+}
+
+
+/* =========================================================
+   14. TABLEAU UTILISATEUR — 7 COLONNES
+========================================================= */
+
+.dashboard-reservations-table {
+    width: 100%;
+    min-width: 1050px;
+}
+
+.dashboard-reservations-header,
+.dashboard-reservation-row {
+    display: grid;
+
+    grid-template-columns:
+        115px
+        170px
+        minmax(190px, 1fr)
+        minmax(190px, 1fr)
+        130px
+        100px
+        70px;
+
+    align-items: center;
+}
+
+.dashboard-reservations-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+
+    min-height: 48px;
+    padding: 0 14px;
+
+    background: var(--blue);
+    color: var(--white);
+
+    font-size: 12px;
+    font-weight: 700;
+
+    box-shadow:
+        0 2px 6px rgba(0, 0, 0, 0.10);
+}
+
+.dashboard-reservation-row {
+    min-height: 68px;
+    padding: 10px 14px;
+
+    background: var(--white);
+
+    border-bottom: 1px solid var(--border);
+
+    transition: background 0.15s ease;
+}
+
+.dashboard-reservation-row:hover {
+    background: var(--blue-very-light);
+}
+
+.dashboard-reservation-row:last-child {
+    border-bottom: 0;
+}
+
+.dashboard-reservations-header > *,
+.dashboard-reservation-row > * {
+    min-width: 0;
+}
+
+
+/* =========================================================
+   15. DATE
+========================================================= */
+
+.dashboard-reservation-date {
+    display: flex;
+    flex-direction: column;
+
+    gap: 3px;
+}
+
+.dashboard-reservation-date strong {
+    color: var(--blue-dark);
+    font-size: 13px;
+}
+
+.dashboard-reservation-date small {
+    color: var(--text-light);
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   16. CLIENT
+========================================================= */
+
+.dashboard-reservation-client {
+    min-width: 0;
+    padding-right: 14px;
+
+    color: var(--blue-dark);
+
+    font-size: 13px;
+    font-weight: 700;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   17. DÉPART ET DESTINATION
+========================================================= */
+
+.dashboard-reservation-address {
+    min-width: 0;
+    padding-right: 14px;
+
+    color: var(--text-light);
+
+    font-size: 12px;
+    line-height: 1.4;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   18. PASSAGER
+========================================================= */
+
+.dashboard-reservation-passenger {
+    min-width: 0;
+    padding-right: 14px;
+
+    color: var(--text-light);
+
+    font-size: 12px;
+    line-height: 1.4;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   19. PRIX
+========================================================= */
+
+.dashboard-reservation-price {
+    color: var(--green);
+
+    font-size: 13px;
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   20. ACTIONS ET PDF
+========================================================= */
+
+.dashboard-reservation-action {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    min-width: 0;
+}
+
+.dashboard-reservation-action .pdf-button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    min-width: 46px;
+    min-height: 32px;
+    padding: 0 8px;
+
+    background: var(--white);
+
+    border: 1px solid var(--blue);
+    border-radius: 6px;
+
+    color: var(--blue);
+    text-decoration: none;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+.dashboard-reservation-action .pdf-button:hover {
+    background: var(--blue);
+    color: var(--white);
+}
+
+
+/* =========================================================
+   21. TABLEAU ADMINISTRATEUR — 8 COLONNES
+========================================================= */
+
+/*
+   Cette présentation s'applique lorsque le JavaScript ajoute
+   la classe admin-dashboard-table au tableau administrateur.
+*/
+
+.admin-dashboard-table {
+    width: 100%;
+    min-width: 1100px;
+}
+
+.admin-dashboard-table .dashboard-reservations-header,
+.admin-dashboard-table .dashboard-reservation-row {
+    grid-template-columns:
+        minmax(150px, 1.2fr)
+        minmax(130px, 1fr)
+        minmax(170px, 1.2fr)
+        minmax(170px, 1.2fr)
+        minmax(130px, 1fr)
+        minmax(90px, 0.7fr)
+        minmax(110px, 0.8fr)
+        70px;
+}
+
+.admin-dashboard-table .dashboard-reservations-header {
+    min-height: 50px;
+}
+
+.admin-dashboard-table .dashboard-reservation-row > *,
+.admin-dashboard-table .dashboard-reservations-header > * {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+/* Le tableau admin peut contenir le nom du compte propriétaire. */
+.admin-dashboard-table .dashboard-reservation-client,
+.admin-dashboard-table .dashboard-reservation-address,
+.admin-dashboard-table .dashboard-reservation-passenger {
+    white-space: normal;
+    overflow-wrap: anywhere;
+    text-overflow: clip;
+}
+
+
+/* =========================================================
+   22. ÉTATS : CHARGEMENT, VIDE, ERREUR
+========================================================= */
+
+.loading,
+.empty,
+.error {
+    padding: 45px 20px;
+
+    text-align: center;
+
+    color: var(--text-light);
+    font-size: 14px;
+}
+
+.error {
+    color: var(--red);
+}
+
+#reservationsContainer .no-reservations {
+    padding: 40px 20px;
+
+    text-align: center;
+
+    color: var(--text-light);
+    font-size: 14px;
+}
+
+#reservationsContainer .dashboard-error {
+    margin: 12px;
+    padding: 30px 20px;
+
+    background: var(--red-light);
+
+    border: 1px solid #F3C2C2;
+    border-radius: 10px;
+
+    color: var(--red);
+    text-align: center;
+}
+
+#reservationsContainer .dashboard-error p {
+    margin: 5px 0;
+}
+
+
+/* =========================================================
+   23. MODALE PHOTO DE PROFIL
+========================================================= */
+
+.profile-photo-modal {
+    display: none;
+
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+
+    justify-content: center;
+    align-items: center;
+
+    padding: 24px;
+
+    background: rgba(0, 0, 0, 0.82);
+}
+
+.profile-photo-modal img {
+    display: block;
+
+    max-width: min(90vw, 700px);
+    max-height: 85vh;
+
+    object-fit: contain;
+
+    background: var(--white);
+    border-radius: 12px;
+
+    box-shadow:
+        0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.profile-photo-close {
+    position: absolute;
+    top: 18px;
+    right: 24px;
+
+    width: 44px;
+    height: 44px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(255, 255, 255, 0.12);
+
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+
+    color: var(--white);
+    font-size: 30px;
+    line-height: 1;
+}
+
+.profile-photo-close:hover {
+    background: var(--white);
+    color: var(--blue-dark);
+}
+
+
+/* =========================================================
+   24. TABLETTE
+========================================================= */
+
+@media (max-width: 1100px) {
+    body {
+        padding: 20px;
+    }
+
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+
+        gap: 18px;
+    }
+
+    .navigation {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .stats-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .section-header {
+        align-items: flex-start;
+    }
+
+    #adminReservationFilters {
+        flex-basis: 100%;
+    }
+}
+
+
+/* =========================================================
+   25. TABLETTE ÉTROITE
+========================================================= */
+
+@media (max-width: 900px) {
+    .dashboard-content {
+        padding: 22px;
+    }
+
+    .reservations-section {
+        padding: 20px;
+    }
+
+    #reservationsContainer {
+        max-height: 500px;
+        overflow-x: auto;
+        overflow-y: auto;
+    }
+
+    .dashboard-reservations-table {
+        min-width: 1050px;
+    }
+
+    .admin-dashboard-table {
+        min-width: 1100px;
+    }
+}
+
+
+/* =========================================================
+   26. MOBILE
+========================================================= */
+
+@media (max-width: 650px) {
+    body {
+        padding: 6px;
+    }
+
+    .app {
+        width: 100%;
+        border-radius: 10px;
+    }
+
+    /* HEADER */
+
+    .header {
+        gap: 15px;
+        padding: 16px;
+    }
+
+    .header-brand {
+        width: 100%;
+        gap: 11px;
+    }
+
+    .header-logo {
+        width: 42px;
+        height: 42px;
+    }
+
+    .header h1 {
+        font-size: 21px;
+    }
+
+    .header p {
+        font-size: 12px;
+    }
+
+    /* NAVIGATION */
+
+    .navigation {
+        display: grid;
+
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+
+        gap: 5px;
+        width: 100%;
+    }
+
+    .navigation a {
+        width: 100%;
+        min-width: 0;
+        min-height: 42px;
+
+        padding: 5px 4px;
+
+        font-size: 12px;
+        white-space: normal;
+        text-align: center;
+    }
+
+    .nav-user {
+        grid-column: span 2;
+        padding: 5px 2px;
+    }
+
+    .nav-user-name {
+        max-width: 125px;
+    }
+
+    .logout-button {
+        width: 100%;
+        min-width: 0;
+        padding: 0 5px;
+
+        font-size: 12px;
+    }
+
+    /* CONTENU */
+
+    .dashboard-content {
+        padding: 15px;
+    }
+
+    /* BIENVENUE */
+
+    .welcome {
+        flex-direction: column;
+        align-items: flex-start;
+
+        gap: 16px;
+        padding: 18px;
+    }
+
+    .welcome h2 {
+        font-size: 20px;
+    }
+
+    .new-reservation {
+        width: 100%;
+        white-space: normal;
+        text-align: center;
+    }
+
+    /* STATISTIQUES */
+
+    .stats-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 12px;
+    }
+
+    .stat-card {
+        min-height: 100px;
+        padding: 17px;
+    }
+
+    .stat-card strong {
+        font-size: 23px;
+    }
+
+    /* SECTION RÉSERVATIONS */
+
+    .reservations-section {
+        padding: 16px;
+    }
+
+    .section-header {
+        flex-direction: column;
+        align-items: stretch;
+
+        gap: 14px;
+    }
+
+    .section-header > div:first-child {
+        width: 100%;
+    }
+
+    .section-header h2 {
+        font-size: 19px;
+    }
+
+    /* FILTRE ADMIN */
+
+    #adminReservationFilters {
+        width: 100%;
+        flex: none;
+
+        flex-direction: column;
+        align-items: stretch;
+
+        gap: 8px;
+        padding: 12px;
+    }
+
+    #adminReservationFilters label {
+        width: 100%;
+    }
+
+    #adminReservationFilters select {
+        width: 100%;
+        min-width: 0;
+        flex: none;
+    }
+
+    /* ACTUALISER */
+
+    .refresh-button {
+        width: 100%;
+    }
+
+    /* TABLEAU */
+
+    #reservationsContainer {
+        max-height: 560px;
+        overflow-x: auto;
+        overflow-y: auto;
+    }
+
+    .dashboard-reservations-table {
+        min-width: 1050px;
+    }
+
+    .dashboard-reservations-header,
+    .dashboard-reservation-row {
+        grid-template-columns:
+            115px
+            170px
+            190px
+            190px
+            130px
+            100px
+            70px;
+    }
+
+    .admin-dashboard-table {
+        min-width: 1100px;
+    }
+
+    .admin-dashboard-table .dashboard-reservations-header,
+    .admin-dashboard-table .dashboard-reservation-row {
+        grid-template-columns:
+            150px
+            130px
+            170px
+            170px
+            130px
+            90px
+            110px
+            70px;
+    }
+}
+
+
+/* =========================================================
+   27. TRÈS PETIT MOBILE
+========================================================= */
+
+@media (max-width: 380px) {
+    body {
+        padding: 4px;
+    }
+
+    .header {
+        padding: 14px;
+    }
+
+    .header-logo {
+        width: 38px;
+        height: 38px;
+    }
+
+    .header h1 {
+        font-size: 19px;
+    }
+
+    .header p {
+        font-size: 11px;
+    }
+
+    .navigation {
+        gap: 4px;
+    }
+
+    .navigation a {
+        min-height: 40px;
+        font-size: 11px;
+    }
+
+    .nav-user-photo {
+        width: 30px;
+        height: 30px;
+    }
+
+    .nav-user-name {
+        max-width: 100px;
+        font-size: 12px;
+    }
+
+    .dashboard-content {
+        padding: 12px;
+    }
+
+    .welcome {
+        padding: 15px;
+    }
+
+    .reservations-section {
+        padding: 12px;
+    }
+
+    .section-header h2 {
+        font-size: 18px;
+    }
+
+    #reservationsContainer {
+        max-height: 520px;
+    }
+}

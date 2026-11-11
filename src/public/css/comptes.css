@@ -1,0 +1,1272 @@
+/* =========================================================
+   BASE
+========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --blue: #1F4E78;
+    --blue-dark: #173A5B;
+    --blue-light: #EAF2F8;
+    --blue-very-light: #F5F9FC;
+
+    --text: #222222;
+    --text-light: #5C6670;
+
+    --border: #D9E2E8;
+
+    --background: #F3F6F8;
+    --white: #FFFFFF;
+
+    --green: #218838;
+    --green-light: #EAF7EE;
+
+    --orange: #B26A00;
+    --orange-light: #FFF4E5;
+
+    --red: #C62828;
+    --red-light: #FDECEC;
+}
+
+html {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0;
+    padding: 30px;
+
+    background: var(--background);
+
+    color: var(--text);
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+}
+
+
+/* =========================================================
+   APPLICATION
+========================================================= */
+
+.app {
+    width: 100%;
+    max-width: 1400px;
+
+    margin: 0 auto;
+
+    background: var(--white);
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 10px 35px rgba(0, 0, 0, 0.08);
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.header {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 25px;
+
+    padding: 25px 30px;
+
+    background: var(--blue);
+
+    color: white;
+}
+
+.header-brand {
+    min-width: 0;
+
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+}
+
+.header-logo {
+    width: 48px;
+    height: 48px;
+
+    object-fit: contain;
+
+    flex-shrink: 0;
+
+    border-radius: 10px;
+
+    background: white;
+}
+
+.header h1 {
+    margin: 0;
+
+    font-size: 28px;
+
+    font-weight: 700;
+}
+
+.header p {
+    margin: 6px 0 0;
+
+    color: #DCEAF5;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.navigation {
+    display: flex;
+
+    justify-content: flex-end;
+    align-items: center;
+
+    gap: 8px;
+
+    flex-wrap: wrap;
+}
+
+.navigation a {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-height: 40px;
+
+    padding: 0 14px;
+
+    border-radius: 8px;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    white-space: nowrap;
+
+    transition:
+        background 0.2s,
+        color 0.2s;
+}
+
+.navigation a:hover {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.navigation a.active {
+    background: white;
+
+    color: var(--blue);
+
+    font-weight: bold;
+}
+
+
+/* =========================================================
+   BOUTON DECONNEXION
+========================================================= */
+
+.logout-button {
+    min-height: 40px;
+
+    padding: 0 14px;
+
+    background: rgba(255, 255, 255, 0.10);
+
+    color: white;
+
+    border: 1px solid rgba(255, 255, 255, 0.35);
+
+    border-radius: 8px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s,
+        color 0.2s;
+}
+
+.logout-button:hover {
+    background: white;
+
+    color: var(--blue);
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+main {
+    width: 100%;
+}
+
+
+/* =========================================================
+   SECTIONS
+========================================================= */
+
+.section {
+    margin: 0 30px 22px;
+
+    padding: 22px;
+
+    background: var(--blue-very-light);
+
+    border: 1px solid var(--border);
+
+    border-radius: 9px;
+}
+
+
+/* =========================================================
+   TITRES
+========================================================= */
+
+.section-title {
+    position: relative;
+
+    padding-bottom: 11px;
+
+    margin: 0 0 22px;
+
+    color: var(--blue);
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.2px;
+}
+
+.section-title::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: 0;
+
+    width: 100%;
+    height: 1px;
+
+    background: var(--border);
+}
+
+
+/* =========================================================
+   COMPTE CONNECTE
+========================================================= */
+
+.current-account {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 16px;
+
+    background: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: 8px;
+}
+
+.account-avatar {
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    background: var(--blue-light);
+
+    border-radius: 50%;
+
+    font-size: 22px;
+}
+
+.current-account-info {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+.current-account-info strong {
+    color: var(--blue);
+
+    font-size: 15px;
+}
+
+.current-account-info span {
+    color: var(--text-light);
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   COLONNES
+========================================================= */
+
+.columns {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 20px;
+}
+
+.column {
+    min-width: 0;
+
+    padding: 20px;
+
+    background: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: 8px;
+}
+
+.column h2 {
+    margin: 0 0 18px;
+
+    padding-bottom: 10px;
+
+    color: var(--blue);
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    border-bottom: 1px solid var(--border);
+}
+
+
+/* =========================================================
+   LABELS
+========================================================= */
+
+label {
+    display: block;
+
+    margin: 12px 0 6px;
+
+    color: var(--text-light);
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   INPUTS
+========================================================= */
+
+input,
+select,
+textarea {
+    width: 100%;
+
+    min-height: 40px;
+
+    padding: 8px 11px;
+
+    background: white;
+
+    color: var(--text);
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 14px;
+
+    border: 1px solid #C8D2DA;
+
+    border-radius: 6px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+input:hover,
+select:hover,
+textarea:hover {
+    border-color: #AAB9C5;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+
+    border-color: var(--blue);
+
+    box-shadow:
+        0 0 0 3px rgba(31, 78, 120, 0.10);
+
+    background: white;
+}
+
+input::placeholder {
+    color: #9AA5AE;
+}
+
+
+/* =========================================================
+   NOTICE
+========================================================= */
+
+.notice {
+    margin: 17px 0;
+
+    padding: 11px 14px;
+
+    color: var(--blue-dark);
+
+    background: var(--blue-light);
+
+    border-left: 4px solid var(--blue);
+
+    border-radius: 5px;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   ACTIONS
+========================================================= */
+
+.actions {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 20px 0 0;
+}
+
+button {
+    min-height: 46px;
+
+    padding: 12px 24px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.15s ease,
+        box-shadow 0.2s ease,
+        opacity 0.2s ease;
+}
+
+button:hover:not(:disabled) {
+    transform: translateY(-1px);
+}
+
+button:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   PRIMARY
+========================================================= */
+
+.primary {
+    background: var(--blue);
+
+    color: white;
+
+    box-shadow:
+        0 4px 12px rgba(31, 78, 120, 0.20);
+}
+
+.primary:hover:not(:disabled) {
+    background: var(--blue-dark);
+
+    box-shadow:
+        0 6px 15px rgba(31, 78, 120, 0.25);
+}
+
+
+/* =========================================================
+   SECONDARY
+========================================================= */
+
+.secondary {
+    background: white;
+
+    color: var(--blue);
+
+    border: 1px solid var(--blue);
+}
+
+.secondary:hover:not(:disabled) {
+    background: var(--blue-light);
+}
+
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.table-container {
+    width: 100%;
+
+    overflow-x: auto;
+
+    background: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: 8px;
+}
+
+.accounts-table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    min-width: 760px;
+}
+
+.accounts-table th {
+    padding: 13px 15px;
+
+    background: var(--blue);
+
+    color: white;
+
+    text-align: left;
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+.accounts-table td {
+    padding: 13px 15px;
+
+    border-bottom: 1px solid var(--border);
+
+    color: var(--text);
+
+    font-size: 13px;
+}
+
+.accounts-table tr:last-child td {
+    border-bottom: none;
+}
+
+.accounts-table tbody tr:hover {
+    background: var(--blue-very-light);
+}
+
+
+/* =========================================================
+   BADGES
+========================================================= */
+
+.badge {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 5px 10px;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+.badge-admin {
+    color: var(--blue-dark);
+
+    background: var(--blue-light);
+}
+
+.badge-user {
+    color: var(--text-light);
+
+    background: #EEF1F3;
+}
+
+.badge-active {
+    color: var(--green);
+
+    background: var(--green-light);
+}
+
+.badge-inactive {
+    color: var(--red);
+
+    background: var(--red-light);
+}
+
+
+/* =========================================================
+   ACTIONS TABLEAU
+========================================================= */
+
+.table-actions {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 6px;
+}
+
+.table-button {
+    min-height: 32px;
+
+    padding: 6px 10px;
+
+    font-size: 11px;
+
+    border-radius: 6px;
+
+    box-shadow: none;
+}
+
+.table-button.blue {
+    color: var(--blue);
+
+    background: var(--blue-light);
+
+    border: 1px solid #C7DCEB;
+}
+
+.table-button.blue:hover {
+    background: #DCEAF5;
+}
+
+.table-button.orange {
+    color: var(--orange);
+
+    background: var(--orange-light);
+
+    border: 1px solid #F1D8AE;
+}
+
+.table-button.orange:hover {
+    background: #FFEBCB;
+}
+
+.table-button.red {
+    color: var(--red);
+
+    background: var(--red-light);
+
+    border: 1px solid #F1C6C6;
+}
+
+.table-button.red:hover {
+    background: #F9DCDC;
+}
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.loading {
+    padding: 30px !important;
+
+    text-align: center;
+
+    color: var(--text-light) !important;
+}
+
+
+/* =========================================================
+   MESSAGE
+========================================================= */
+
+.message {
+    min-height: 25px;
+
+    padding: 12px 0 0;
+
+    text-align: center;
+
+    color: var(--text-light);
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+.message.success {
+    color: var(--green);
+}
+
+.message.error {
+    color: var(--red);
+}
+
+
+/* =========================================================
+   MOT DE PASSE
+========================================================= */
+
+.password-user {
+    margin-bottom: 20px;
+
+    padding: 12px 14px;
+
+    color: var(--blue-dark);
+
+    background: var(--blue-light);
+
+    border-left: 4px solid var(--blue);
+
+    border-radius: 5px;
+
+    font-size: 13px;
+}
+
+.password-user strong {
+    color: var(--blue);
+}
+
+.password-form {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 20px;
+}
+
+
+/* =========================================================
+   RESPONSIVE TABLETTE
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    body {
+        padding: 20px;
+    }
+
+    .header {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 18px;
+    }
+
+    .navigation {
+        width: 100%;
+
+        justify-content: flex-start;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE PETITE TABLETTE
+========================================================= */
+
+@media (max-width: 800px) {
+
+    body {
+        padding: 10px;
+    }
+
+    .app {
+        width: 100%;
+
+        margin: 0 auto;
+
+        border-radius: 12px;
+    }
+
+    .header {
+        padding: 20px;
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 18px;
+    }
+
+    .header-brand {
+        width: 100%;
+    }
+
+    .header h1 {
+        font-size: 23px;
+    }
+
+    .navigation {
+        width: 100%;
+
+        justify-content: flex-start;
+    }
+
+    .navigation a,
+    .logout-button {
+        flex: 1;
+    }
+
+    .section {
+        margin-left: 20px;
+        margin-right: 20px;
+
+        padding: 18px;
+    }
+
+    .columns {
+        gap: 15px;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE MOBILE
+========================================================= */
+
+@media (max-width: 650px) {
+
+    body {
+        padding: 6px;
+    }
+
+    .app {
+        width: 100%;
+
+        margin: 0;
+
+        border-radius: 10px;
+    }
+
+    .header {
+        padding: 16px;
+
+        margin: 0;
+
+        border-radius: 0;
+
+        gap: 15px;
+    }
+
+    .header-brand {
+        gap: 11px;
+    }
+
+    .header-logo {
+        width: 42px;
+        height: 42px;
+    }
+
+    .header h1 {
+        font-size: 21px;
+    }
+
+    .header p {
+        font-size: 12px;
+    }
+
+    .navigation {
+        display: grid;
+
+        grid-template-columns: repeat(3, 1fr);
+
+        gap: 6px;
+
+        width: 100%;
+    }
+
+    .navigation a,
+    .logout-button {
+        width: 100%;
+
+        min-height: 42px;
+
+        padding: 0 5px;
+
+        font-size: 12px;
+
+        text-align: center;
+    }
+
+    .logout-button {
+        grid-column: span 3;
+    }
+
+    .section {
+        margin: 0 12px 15px;
+
+        padding: 15px;
+    }
+
+    .columns,
+    .password-form {
+        grid-template-columns: 1fr;
+    }
+
+    .column {
+        padding: 15px;
+    }
+
+    .current-account {
+        align-items: flex-start;
+    }
+
+    .actions {
+        flex-direction: column;
+
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    button {
+        width: 100%;
+    }
+
+    .table-actions {
+        flex-direction: column;
+    }
+
+    .table-button {
+        width: 100%;
+    }
+}
+
+
+/* =========================================================
+   TRES PETIT MOBILE
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .header {
+        padding: 14px;
+    }
+
+    .header-logo {
+        width: 38px;
+        height: 38px;
+    }
+
+    .header h1 {
+        font-size: 19px;
+    }
+
+    .header p {
+        font-size: 11px;
+    }
+
+    .navigation a,
+    .logout-button {
+        min-height: 40px;
+
+        font-size: 11px;
+    }
+
+    .section {
+        margin-left: 8px;
+        margin-right: 8px;
+
+        padding: 13px;
+    }
+
+    .column {
+        padding: 13px;
+    }
+}
+.account-email {
+    display: inline-block;
+    margin-top: 4px;
+
+    color: var(--text-light);
+
+    font-size: 12px;
+}
+.current-account {
+    padding: 20px 24px;
+}
+
+.profile-card {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.profile-avatar {
+    width: 68px;
+    height: 68px;
+    min-width: 68px;
+    border-radius: 50%;
+    background: var(--blue);
+    color: var(--white);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 24px;
+    font-weight: bold;
+
+    border: 3px solid var(--blue-light);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+
+    overflow: hidden;
+}
+
+.profile-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-info h2 {
+    margin: 0 0 5px;
+    color: var(--text);
+    font-size: 20px;
+}
+
+.profile-email {
+    color: var(--text-light);
+    font-size: 13px;
+    margin-bottom: 7px;
+}
+
+.profile-role {
+    display: inline-flex;
+    align-items: center;
+
+    padding: 4px 10px;
+    border-radius: 20px;
+
+    background: var(--blue-light);
+    color: var(--blue);
+
+    font-size: 12px;
+    font-weight: bold;
+}
+/* =========================================================
+   UTILISATEUR DANS LA NAVIGATION
+========================================================= */
+
+.nav-user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: auto;
+    padding: 5px 12px 5px 8px;
+    border-left: 1px solid var(--border);
+}
+
+
+.nav-user-avatar {
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+    border-radius: 50%;
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: var(--blue);
+    color: var(--white);
+
+    font-size: 13px;
+    font-weight: 700;
+
+    border: 2px solid var(--blue-light);
+}
+
+
+.nav-user-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+
+.nav-user-info {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+    min-width: 0;
+}
+
+
+.nav-user-info strong {
+    color: var(--text);
+    font-size: 13px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 130px;
+}
+
+
+.nav-user-info span {
+    color: var(--text-light);
+    font-size: 11px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 130px;
+}
+
+
+/* =========================================================
+   AVATAR DANS LE TABLEAU
+========================================================= */
+
+.account-user-cell {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+.account-avatar,
+.account-avatar-image {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+
+    border-radius: 50%;
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.account-avatar {
+    background: var(--blue);
+    color: var(--white);
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+
+.account-avatar-image {
+    object-fit: cover;
+    display: block;
+
+    border: 1px solid var(--border);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .nav-user-info {
+        display: none;
+    }
+
+    .nav-user {
+        margin-left: 5px;
+        padding-right: 5px;
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .nav-user {
+        display: none;
+    }
+
+}
+/* =====================================================
+   PHOTO DE PROFIL - APERÇU
+===================================================== */
+
+.photo-preview-container {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.photo-preview {
+    width: 120px;
+    height: 120px;
+    max-width: 120px;
+    max-height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+    border: 2px solid #ddd;
+}

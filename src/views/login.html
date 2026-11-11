@@ -1,0 +1,322 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Connexion - VTC Manager</title>
+
+    <link
+        rel="stylesheet"
+        href="css/login.css"
+    >
+</head>
+
+<body>
+
+    <main class="login-page">
+
+        <div class="login-card">
+
+            <!-- LOGO -->
+
+            <div class="logo">
+
+                <img
+                    src="images/icons/icon-192.png"
+                    alt="Logo VTC Manager"
+                    class="header-logo"
+                >
+
+                <h1>VTC Manager</h1>
+
+                <p>
+                    Gestion de votre activité VTC
+                </p>
+
+            </div>
+
+            <!-- CONNEXION -->
+
+            <section
+                id="loginSection"
+                class="auth-section"
+            >
+
+                <h2>Connexion</h2>
+
+                <p class="section-description">
+                    Connectez-vous à votre espace.
+                </p>
+
+                <form id="loginForm">
+
+                    <!-- LOGIN OU EMAIL -->
+
+                    <div class="form-group">
+
+                        <label for="loginEmail">
+                            Login ou adresse e-mail
+                        </label>
+
+                        <input
+                            type="text"
+                            id="loginEmail"
+                            name="login"
+                            placeholder="Votre login ou votre e-mail"
+                            autocomplete="username"
+                            autocapitalize="none"
+                            spellcheck="false"
+                            required
+                        >
+
+                    </div>
+
+                    <!-- MOT DE PASSE -->
+
+                    <div class="form-group">
+
+                        <label for="loginPassword">
+                            Mot de passe
+                        </label>
+
+                        <div class="password-container">
+
+                            <input
+                                type="password"
+                                id="loginPassword"
+                                name="password"
+                                placeholder="Votre mot de passe"
+                                autocomplete="current-password"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                id="togglePassword"
+                                class="toggle-password"
+                                aria-label="Afficher le mot de passe"
+                                aria-pressed="false"
+                            >
+                                👁️
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <!-- BOUTON CONNEXION -->
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary"
+                        id="loginButton"
+                    >
+                        Se connecter
+                    </button>
+
+                </form>
+
+                <div
+                    id="loginMessage"
+                    class="message"
+                    role="alert"
+                    aria-live="polite"
+                ></div>
+
+                <button
+                    type="button"
+                    id="showSetupButton"
+                    class="link-button"
+                >
+                    Première installation ?
+                </button>
+
+            </section>
+
+            <!-- PREMIÈRE INSTALLATION -->
+
+            <section
+                id="setupSection"
+                class="auth-section hidden"
+            >
+
+                <h2>Première installation</h2>
+
+                <p class="section-description">
+                    Créez le compte administrateur
+                    de votre VTC Manager.
+                </p>
+
+                <form
+                    id="setupForm"
+                    enctype="multipart/form-data"
+                >
+
+                    <!-- NOM -->
+
+                    <div class="form-group">
+
+                        <label for="setupNom">
+                            Nom
+                        </label>
+
+                        <input
+                            type="text"
+                            id="setupNom"
+                            name="nom"
+                            placeholder="Votre nom"
+                            autocomplete="name"
+                            required
+                        >
+
+                    </div>
+
+                    <!-- EMAIL -->
+
+                    <div class="form-group">
+
+                        <label for="setupEmail">
+                            Adresse e-mail
+                        </label>
+
+                        <input
+                            type="email"
+                            id="setupEmail"
+                            name="email"
+                            placeholder="admin@email.com"
+                            autocomplete="email"
+                            autocapitalize="none"
+                            required
+                        >
+
+                    </div>
+
+                    <!-- MOT DE PASSE -->
+
+                    <div class="form-group">
+
+                        <label for="setupPassword">
+                            Mot de passe
+                        </label>
+
+                        <input
+                            type="password"
+                            id="setupPassword"
+                            name="password"
+                            placeholder="8 caractères minimum"
+                            autocomplete="new-password"
+                            minlength="8"
+                            required
+                        >
+
+                    </div>
+
+                    <!-- CONFIRMATION MOT DE PASSE -->
+
+                    <div class="form-group">
+
+                        <label for="setupPasswordConfirm">
+                            Confirmer le mot de passe
+                        </label>
+
+                        <input
+                            type="password"
+                            id="setupPasswordConfirm"
+                            name="passwordConfirm"
+                            placeholder="Confirmez le mot de passe"
+                            autocomplete="new-password"
+                            minlength="8"
+                            required
+                        >
+
+                    </div>
+
+                    <!-- PHOTO ADMINISTRATEUR -->
+
+                    <div class="form-group">
+
+                        <label for="setupPhoto">
+                            Photo de profil
+                        </label>
+
+                        <input
+                            type="file"
+                            id="setupPhoto"
+                            name="photo"
+                            accept="image/jpeg,image/png,image/webp"
+                        >
+
+                        <small class="form-help">
+                            JPG, PNG ou WEBP — 5 Mo maximum.
+                        </small>
+
+                    </div>
+
+                    <!-- APERÇU PHOTO -->
+
+                    <div
+                        id="setupPhotoPreviewContainer"
+                        class="photo-preview hidden"
+                    >
+
+                        <img
+                            id="setupPhotoPreview"
+                            src=""
+                            alt="Aperçu de votre photo de profil"
+                        >
+
+                        <button
+                            type="button"
+                            id="removeSetupPhoto"
+                            class="photo-remove-button"
+                        >
+                            Supprimer la photo
+                        </button>
+
+                    </div>
+
+                    <!-- CRÉATION DU COMPTE -->
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary"
+                        id="setupButton"
+                    >
+                        Créer le compte administrateur
+                    </button>
+
+                </form>
+
+                <div
+                    id="setupMessage"
+                    class="message"
+                    role="alert"
+                    aria-live="polite"
+                ></div>
+
+                <button
+                    type="button"
+                    id="showLoginButton"
+                    class="link-button"
+                >
+                    Retour à la connexion
+                </button>
+
+            </section>
+
+        </div>
+
+    </main>
+
+    <script src="js/login.js"></script>
+
+</body>
+
+</html>

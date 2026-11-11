@@ -1,0 +1,60 @@
+
+# Documents PDF générés
+src/public/pdf/
+
+# Photos des utilisateurs
+src/public/uploads/profiles/
+
+# Variables sensibles
+.env
+.env.*
+!.env.example
+
+# Dépendances
+node_modules/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Fichiers temporaires
+.tmp/
+temp/
+tmp/
+
+# Système
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Éditeurs
+.vscode/
+.idea/
+
+# Tests
+coverage/
+.nyc_output/
+
+# Fichiers générés
+dist/
+build/
+
+# Bases de données locales
+*.sqlite
+*.sqlite3
+*.db
+*.db-journal
+
+# Sauvegardes
+*.bak
+*.backup
+*.old
+
+# Clés privées et certificats
+*.pem
+*.key
+*.p12
+*.pfx

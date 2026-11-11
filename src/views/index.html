@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Nouvelle réservation VTC</title>
+
+    <!-- CSS principal -->
+    <link
+        rel="stylesheet"
+        href="/css/style.css"
+    >
+
+    <!-- CSS navigation -->
+    <link
+        rel="stylesheet"
+        href="/css/navigation.css"
+    >
+
+    <!-- PWA -->
+    <link
+        rel="manifest"
+        href="/images/manifest.json"
+    >
+
+    <meta
+        name="theme-color"
+        content="#1F4E78"
+    >
+
+    <meta
+        name="mobile-web-app-capable"
+        content="yes"
+    >
+
+    <meta
+        name="apple-mobile-web-app-capable"
+        content="yes"
+    >
+
+    <meta
+        name="apple-mobile-web-app-status-bar-style"
+        content="default"
+    >
+
+    <meta
+        name="apple-mobile-web-app-title"
+        content="VTC Manager"
+    >
+
+    <style>
+        /* =====================================================
+           AUTOCOMPLÉTION DES ADRESSES
+        ====================================================== */
+
+        .address-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .address-wrapper input {
+            width: 100%;
+        }
+
+        .address-suggestions {
+            position: absolute;
+            top: calc(100% - 9px);
+            left: 0;
+            right: 0;
+            z-index: 9999;
+
+            display: none;
+
+            max-height: 250px;
+            overflow-y: auto;
+
+            background: #ffffff;
+            border: 1px solid #C8D2DA;
+            border-radius: 0 0 6px 6px;
+
+            box-shadow:
+                0 6px 15px rgba(31, 78, 120, 0.15);
+        }
+
+        .address-suggestion {
+            padding: 11px 13px;
+
+            color: #222;
+            background: #ffffff;
+
+            border-bottom: 1px solid #E5E9EC;
+
+            font-size: 13px;
+            line-height: 1.4;
+
+            cursor: pointer;
+
+            transition:
+                background 0.15s ease;
+        }
+
+        .address-suggestion:last-child {
+            border-bottom: none;
+        }
+
+        .address-suggestion:hover,
+        .address-suggestion.active {
+            background: #EAF2F8;
+        }
+
+        .address-suggestion strong {
+            display: block;
+
+            color: #1F4E78;
+
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .address-suggestion small {
+            display: block;
+
+            margin-top: 3px;
+
+            color: #5C6670;
+
+            font-size: 11px;
+        }
+
+        .address-loading {
+            padding: 11px 13px;
+
+            color: #5C6670;
+            background: #ffffff;
+
+            font-size: 12px;
+        }
+
+        .address-empty {
+            padding: 11px 13px;
+
+            color: #5C6670;
+            background: #ffffff;
+
+            font-size: 12px;
+        }
+
+
+        /* =====================================================
+           TARIFICATION
+        ====================================================== */
+
+        .tarification-auto {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 15px;
+
+            align-items: end;
+        }
+
+        .tarification-auto .tarif-item {
+            display: flex;
+            flex-direction: column;
+
+        }
+
+        .tarification-auto input{
+            background: #F3F6F8;
+            cursor: not-allowed;
+        }
+
+        .tarif-resultat {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1F4E78;
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ====================================================== */
+
+        @media (max-width: 700px) {
+
+            .tarification-auto {
+                grid-template-columns: 1fr;
+            }
+
+        }
+    </style>
+</head>
+
+
+<body>
+
+<div class="app">
+
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header class="header">
+
+        <div class="header-brand">
+
+            <img
+                src="/images/icons/icon-192.png"
+                alt="Logo VTC Manager"
+                class="header-logo"
+            >
+
+            <div>
+
+                <h1>VTC Manager</h1>
+
+                <p>
+                    Nouvelle réservation VTC
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             NAVIGATION
+        ================================================== -->
+
+        <nav
+            class="navigation"
+            aria-label="Navigation principale"
+        >
+
+            <a href="/dashboard">
+                🏠 Dashboard
+            </a>
+
+            <a href="/reservations">
+                📋 Réservations
+            </a>
+
+            <a
+                href="/"
+                class="active"
+            >
+                📄 Bon de réservation
+            </a>
+
+            <a
+                href="/comptes"
+                id="comptesNavLink"
+                class="admin-only"
+                style="display: none;"
+            >
+                👥 Gestion des comptes
+            </a>
+
+
+            <!-- UTILISATEUR -->
+
+            <div
+                class="nav-user"
+                id="navUser"
+            >
+
+                <img
+                    id="navUserPhoto"
+                    src="/images/default-avatar.png"
+                    alt="Profil"
+                    class="nav-user-photo"
+                >
+
+                <span
+                    id="navUserName"
+                    class="nav-user-name"
+                >
+                    Utilisateur
+                </span>
+
+            </div>
+
+
+            <!-- DÉCONNEXION -->
+
+            <button
+                type="button"
+                id="logoutButton"
+                class="logout-button"
+            >
+                Déconnexion
+            </button>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         INFORMATIONS ENTREPRISE / CLIENT
+    ====================================================== -->
+
+    <section class="section">
+
+        <div class="section-title">
+            Informations client et entreprise
+        </div>
+
+
+        <div class="columns">
+
+
+            <!-- =================================================
+                 ENTREPRISE
+            ================================================== -->
+
+            <div class="column" >
+
+                <h2>
+                    Entreprise
+                </h2>
+
+
+                <label for="entrepriseNom">
+                    Nom de l'entreprise
+                </label>
+
+                <input
+                    type="text"
+                    id="entrepriseNom"
+                    name="entrepriseNom"
+                    placeholder="Nom de l'entreprise"
+                >
+<!-- 
+
+                <label for="entrepriseSiret">
+                    SIRET
+                </label>
+
+                <input
+                    type="text"
+                    id="entrepriseSiret"
+                    name="entrepriseSiret"
+                    placeholder="14 chiffres"
+                >
+
+
+                <label for="entrepriseRevtc">
+                    N° REVTC
+                </label>
+
+                <input
+                    type="text"
+                    id="entrepriseRevtc"
+                    name="entrepriseRevtc"
+                    placeholder="Numéro REVTC"
+                > -->
+                <label for="entrepriseTelephone">
+    Téléphone
+</label>
+
+<input
+    type="tel"
+    id="entrepriseTelephone"
+    name="entrepriseTelephone"
+    placeholder="06 12 34 56 78"
+>
+
+<!-- <label for="entrepriseEmail">
+    Email
+</label>
+
+<input
+    type="email"
+    id="entrepriseEmail"
+    name="entrepriseEmail"
+    placeholder="contact@entreprise.fr"
+> -->
+
+
+                <!-- CHAUFFEUR -->
+
+                <label for="entrepriseChauffeur">
+                    Conducteur
+                </label>
+
+                <input
+                    type="text"
+                    id="entrepriseChauffeur"
+                    name="entrepriseChauffeur"
+                    placeholder="Nom du chauffeur"
+                >
+
+
+                <!-- ADRESSE ENTREPRISE -->
+
+                <label for="entrepriseAdresse">
+                    Adresse
+                </label>
+
+                <div class="address-wrapper">
+
+                    <input
+                        type="text"
+                        id="entrepriseAdresse"
+                        name="entrepriseAdresse"
+                        autocomplete="off"
+                        placeholder="Commencez à saisir l'adresse..."
+                    >
+
+                    <div
+                        id="entrepriseAdresseSuggestions"
+                        class="address-suggestions"
+                    ></div>
+
+                </div>
+
+            </div>
+
+                <!-- =====================================================
+         TRAJET
+    ====================================================== -->
+
+    <section class="section">
+
+        <div class="section-title">
+            Trajet
+        </div>
+
+
+        <!-- DÉPART -->
+
+        <label for="depart">
+            Adresse de départ *
+        </label>
+
+        <div class="address-wrapper">
+
+            <input
+                type="text"
+                id="depart"
+                name="depart"
+                autocomplete="off"
+                placeholder="Adresse de départ..."
+                required
+            >
+
+            <div
+                id="departSuggestions"
+                class="address-suggestions"
+            ></div>
+
+        </div>
+
+
+        <!-- DESTINATION -->
+
+        <label for="destination">
+            Adresse de destination *
+        </label>
+
+        <div class="address-wrapper">
+
+            <input
+                type="text"
+                id="destination"
+                name="destination"
+                autocomplete="off"
+                placeholder="Adresse de destination..."
+                required
+            >
+
+            <div
+                id="destinationSuggestions"
+                class="address-suggestions"
+            ></div>
+
+        </div>
+
+    </section>
+
+
+
+            <!-- =================================================
+                 CLIENT
+            ================================================== -->
+
+            <div class="column">
+
+                <h2>
+                    Client
+                </h2>
+
+
+                <label for="clientNom">
+                    Nom du client *
+                </label>
+
+                <input
+                    type="text"
+                    id="clientNom"
+                    name="clientNom"
+                    placeholder="Nom et prénom"
+                    required
+                >
+
+
+                <label for="clientTelephone">
+                    Téléphone
+                </label>
+
+                <input
+                    type="tel"
+                    id="clientTelephone"
+                    name="clientTelephone"
+                    placeholder="06 12 34 56 78"
+                >
+
+
+                <label for="clientEmail">
+                    Email
+                </label>
+
+                <input
+                    type="email"
+                    id="clientEmail"
+                    name="clientEmail"
+                    placeholder="client@email.com"
+                >
+
+
+                <label for="passager">
+                    Passager
+                </label>
+
+                <input
+                    type="text"
+                    id="passager"
+                    name="passager"
+                    placeholder="Nom du passager"
+                >
+
+
+                <label for="clientAdresse">
+                    Adresse du client
+                </label>
+
+                <div class="address-wrapper">
+
+                    <input
+                        type="text"
+                        id="clientAdresse"
+                        name="clientAdresse"
+                        autocomplete="off"
+                        placeholder="Commencez à saisir l'adresse..."
+                    >
+
+                    <div
+                        id="clientAdresseSuggestions"
+                        class="address-suggestions"
+                    ></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         DATE ET HEURE
+    ====================================================== -->
+
+    <section class="section">
+
+        <div class="section-title">
+            Date et horaires
+        </div>
+
+
+        <div class="grid">
+
+
+            <div>
+
+                <label for="dateReservation">
+                    Date de réservation *
+                </label>
+
+                <input
+                    type="date"
+                    id="dateReservation"
+                    name="dateReservation"
+                    required
+                >
+
+            </div>
+
+
+            <div>
+
+                <label for="heureReservation">
+                    Heure de réservation *
+                </label>
+
+                <input
+                    type="time"
+                    id="heureReservation"
+                    name="heureReservation"
+                    required
+                >
+
+            </div>
+
+
+            <div>
+
+                <label for="datePrise">
+                    Date de prise en charge *
+                </label>
+
+                <input
+                    type="date"
+                    id="datePrise"
+                    name="datePrise"
+                    required
+                >
+
+            </div>
+
+
+            <div>
+
+                <label for="heurePrise">
+                    Heure de prise en charge *
+                </label>
+
+                <input
+                    type="time"
+                    id="heurePrise"
+                    name="heurePrise"
+                    required
+                >
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+
+
+
+
+    <!-- =====================================================
+         TARIFICATION
+    ====================================================== -->
+
+    <section class="section">
+
+        <div class="section-title">
+            Tarification
+        </div>
+
+
+        <div class="tarification-auto">
+
+
+            <!-- TARIF KM -->
+
+            <div class="tarif-item">
+
+                <label for="tarifKm">
+                    Tarif au km
+                </label>
+
+                <div class="price-input">
+
+                    <input
+                        type="number"
+                        id="tarifKm"
+                        name="tarifKm"
+                        min="0"
+                        step="0.01"
+                        value="1.00"
+                        placeholder="1.00"
+                    >
+
+                    <span>
+                        €/km
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- DISTANCE -->
+
+            <div class="tarif-item">
+
+                <label for="distanceKm">
+                    Distance
+                </label>
+
+                <div class="price-input">
+
+                    <input
+                        type="text"
+                        id="distanceKm"
+                        name="distanceKm"
+                        value=""
+                        placeholder="Calcul en cours..."
+                    >
+
+                    <span>
+                        km
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- PRIX -->
+
+            <div class="tarif-item">
+
+                <label for="prix">
+                    Prix de la course
+                </label>
+
+                <div class="price-input">
+
+                    <input
+                        type="number"
+                        id="prix"
+                        name="prix"
+                        min="0"
+                        step="0.01"
+                        placeholder="0.00"
+                        required
+                    >
+
+                    <span>
+                        €
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div
+            id="tarifMessage"
+            class="notice"
+            style="margin-top: 15px;"
+        >
+            Sélectionnez une adresse de départ et une adresse
+            de destination pour calculer automatiquement
+            la distance et le prix.
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         PAIEMENT
+    ====================================================== -->
+
+    <section class="section">
+
+        <div class="section-title">
+            Mode de paiement
+        </div>
+
+
+        <div class="payment">
+
+            <strong>
+                Paiement :
+            </strong>
+
+
+            <label>
+
+                <input
+                    type="radio"
+                    name="paiement"
+                    value="Carte Bancaire"
+                    checked
+                >
+
+                Carte bancaire
+
+            </label>
+
+
+            <label>
+
+                <input
+                    type="radio"
+                    name="paiement"
+                    value="Espèces"
+                >
+
+                Espèces
+
+            </label>
+
+
+            <label>
+
+                <input
+                    type="radio"
+                    name="paiement"
+                    value="Virement"
+                >
+
+                Virement
+
+            </label>
+
+
+            <label>
+
+                <input
+                    type="radio"
+                    name="paiement"
+                    value="En ligne / App"
+                >
+
+                En ligne / App
+
+            </label>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         INFORMATIONS
+    ====================================================== -->
+
+    <div class="notice">
+
+        Les adresses proposées sont issues de la
+        Base Adresse Nationale.
+
+        Sélectionnez une adresse dans la liste pour la
+        renseigner automatiquement.
+
+    </div>
+
+
+
+    <!-- =====================================================
+         ACTIONS
+    ====================================================== -->
+
+    <div class="actions">
+
+        <button
+            type="button"
+            id="saveButton"
+            class="primary"
+        >
+            Enregistrer la réservation
+        </button>
+
+
+        <button
+            type="button"
+            id="pdfButton"
+            class="secondary"
+        >
+            Générer le PDF
+        </button>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         MESSAGE
+    ====================================================== -->
+
+    <div
+        id="message"
+        class="message"
+        role="alert"
+        aria-live="polite"
+    ></div>
+
+</div>
+
+
+
+<!-- =========================================================
+     JAVASCRIPT NAVIGATION
+========================================================== -->
+
+<script src="/js/navigation.js"></script>
+
+
+<!-- =========================================================
+     JAVASCRIPT RÉSERVATION
+========================================================== -->
+
+<script src="/js/app.js"></script>
+
+
+<!-- =========================================================
+     SERVICE WORKER
+========================================================== -->
+
+<script>
+
+    if ("serviceWorker" in navigator) {
+
+        window.addEventListener("load", () => {
+
+            navigator.serviceWorker
+                .register("/service-worker.js")
+                .then(registration => {
+
+                    console.log(
+                        "Service Worker enregistré :",
+                        registration.scope
+                    );
+
+                })
+                .catch(error => {
+
+                    console.error(
+                        "Erreur Service Worker :",
+                        error
+                    );
+
+                });
+
+        });
+
+    }
+
+</script>
+<!-- =====================================================
+     MODAL PHOTO PROFIL
+====================================================== -->
+
+<div id="profilePhotoModal" class="profile-photo-modal">
+
+    <button
+        type="button"
+        id="closeProfilePhoto"
+        class="profile-photo-close"
+        aria-label="Fermer"
+    >
+        ×
+    </button>
+
+    <img
+        id="profilePhotoFull"
+        src="/images/default-avatar.png"
+        alt="Photo de profil"
+    >
+
+</div>
+</body>
+</html>

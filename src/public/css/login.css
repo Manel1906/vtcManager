@@ -1,0 +1,553 @@
+/* =========================================
+   RESET
+========================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+}
+
+
+/* =========================================
+   VARIABLES APPLICATION
+========================================= */
+
+:root {
+    --blue: #1F4E78;
+    --blue-dark: #173A5B;
+    --blue-light: #DCEAF5;
+
+    --text: #172033;
+    --text-light: #64748b;
+
+    --border: #d6dee8;
+
+    --background: #f4f7fa;
+
+    --success: #15803d;
+    --error: #dc2626;
+}
+
+
+/* =========================================
+   BODY
+========================================= */
+
+body {
+    min-height: 100vh;
+
+    background:
+        linear-gradient(
+            135deg,
+            #173A5B,
+            #1F4E78
+        );
+
+    color: var(--text);
+}
+
+
+/* =========================================
+   PAGE LOGIN
+========================================= */
+
+.login-page {
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 25px;
+}
+
+
+/* =========================================
+   CARTE LOGIN
+========================================= */
+
+.login-card {
+    width: 100%;
+
+    max-width: 430px;
+
+    background: #ffffff;
+
+    border: 1px solid rgba(255, 255, 255, 0.5);
+
+    border-radius: 14px;
+
+    padding: 35px;
+
+    box-shadow:
+        0 20px 45px rgba(0, 0, 0, 0.22);
+}
+
+
+/* =========================================
+   LOGO
+========================================= */
+
+.logo {
+    text-align: center;
+
+    margin-bottom: 30px;
+}
+
+
+/* Logo application */
+
+.logo-icon {
+    width: 65px;
+    height: 65px;
+
+    margin: 0 auto 15px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: var(--blue);
+
+    color: #ffffff;
+
+    font-size: 30px;
+
+    box-shadow:
+        0 6px 15px rgba(31, 78, 120, 0.25);
+}
+
+
+/* Si ton logo-icon contient une image */
+
+.logo-icon img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    border-radius: 12px;
+}
+
+
+.logo h1 {
+    margin: 0;
+
+    font-size: 28px;
+
+    font-weight: 700;
+
+    color: var(--blue-dark);
+}
+
+
+.logo p {
+    margin: 8px 0 0;
+
+    color: var(--text-light);
+
+    font-size: 14px;
+}
+
+
+/* =========================================
+   SECTION AUTHENTIFICATION
+========================================= */
+
+.auth-section h2 {
+    margin: 0 0 8px;
+
+    font-size: 22px;
+
+    font-weight: 700;
+
+    color: var(--blue-dark);
+}
+
+
+.section-description {
+    margin: 0 0 25px;
+
+    color: var(--text-light);
+
+    font-size: 14px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   FORMULAIRE
+========================================= */
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+
+.form-group label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    color: #374151;
+}
+
+
+.form-group input {
+    width: 100%;
+
+    height: 46px;
+
+    padding: 0 13px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 8px;
+
+    background: #ffffff;
+
+    color: var(--text);
+
+    font-family: inherit;
+
+    font-size: 15px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s,
+        box-shadow 0.2s,
+        background 0.2s;
+}
+
+
+.form-group input:hover {
+    border-color: #b8c7d6;
+}
+
+
+.form-group input:focus {
+    border-color: var(--blue);
+
+    background: #ffffff;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(31, 78, 120, 0.12);
+}
+
+
+.form-group input::placeholder {
+    color: #9ca3af;
+}
+
+
+/* =========================================
+   BOUTONS
+========================================= */
+
+.btn {
+    width: 100%;
+
+    height: 47px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    font-family: inherit;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s,
+        opacity 0.2s,
+        transform 0.1s,
+        box-shadow 0.2s;
+}
+
+
+.btn:hover {
+    opacity: 1;
+}
+
+
+.btn:active {
+    transform: scale(0.99);
+}
+
+
+.btn:disabled {
+    opacity: 0.6;
+
+    cursor: not-allowed;
+}
+
+
+/* Bouton principal */
+
+.btn-primary {
+    background: var(--blue);
+
+    color: #ffffff;
+
+    box-shadow:
+        0 4px 10px rgba(31, 78, 120, 0.18);
+}
+
+
+.btn-primary:hover {
+    background: var(--blue-dark);
+
+    box-shadow:
+        0 6px 14px rgba(31, 78, 120, 0.25);
+}
+
+
+/* =========================================
+   MESSAGES
+========================================= */
+
+.message {
+    min-height: 20px;
+
+    margin-top: 15px;
+
+    padding: 0;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+}
+
+
+.message.success {
+    color: var(--success);
+}
+
+
+.message.error {
+    color: var(--error);
+}
+
+
+/* =========================================
+   LIEN
+========================================= */
+
+.link-button {
+    display: block;
+
+    margin: 20px auto 0;
+
+    padding: 0;
+
+    border: none;
+
+    background: none;
+
+    color: var(--blue);
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+
+.link-button:hover {
+    color: var(--blue-dark);
+
+    text-decoration: underline;
+}
+
+
+/* =========================================
+   UTILITAIRE
+========================================= */
+
+.hidden {
+    display: none !important;
+}
+
+
+/* =========================================
+   PETITE LIGNE DÉCORATIVE
+========================================= */
+
+.login-card::before {
+    content: "";
+
+    display: block;
+
+    width: 55px;
+
+    height: 4px;
+
+    margin: -35px auto 28px;
+
+    border-radius: 0 0 4px 4px;
+
+    background: var(--blue);
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 500px) {
+
+    .login-page {
+        padding: 12px;
+    }
+
+    .login-card {
+        padding: 28px 20px;
+
+        border-radius: 12px;
+    }
+
+    .login-card::before {
+        margin-top: -28px;
+    }
+
+    .logo {
+        margin-bottom: 25px;
+    }
+
+    .logo-icon {
+        width: 58px;
+        height: 58px;
+
+        margin-bottom: 12px;
+    }
+
+    .logo h1 {
+        font-size: 24px;
+    }
+
+    .logo p {
+        font-size: 13px;
+    }
+
+    .auth-section h2 {
+        font-size: 20px;
+    }
+
+    .form-group input {
+        height: 45px;
+    }
+
+    .btn {
+        height: 46px;
+    }
+}
+/* Champ de sélection de photo */
+input[type="file"] {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px 10px;
+    font-size: 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    background: #f8fafc;
+    cursor: pointer;
+}
+
+/* Texte d'aide sous le champ */
+.form-help {
+    display: block;
+    margin-top: 5px;
+    font-size: 12px;
+    color: #64748b;
+}
+
+/* Aperçu de la photo */
+.photo-preview {
+    margin-top: 12px;
+    text-align: center;
+}
+
+.photo-preview img {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #1F4E78;
+    display: block;
+    margin: 0 auto 10px;
+}
+
+/* Bouton supprimer */
+.photo-remove-button {
+    padding: 6px 12px;
+    font-size: 12px;
+    border: none;
+    border-radius: 6px;
+    background: #e2e8f0;
+    color: #334155;
+    cursor: pointer;
+}
+
+.photo-remove-button:hover {
+    background: #cbd5e1;
+}
+.password-container {
+    position: relative;
+    width: 100%;
+}
+
+.password-container input {
+    width: 100%;
+    padding-right: 50px;
+    box-sizing: border-box;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    border: none;
+    background: transparent;
+
+    cursor: pointer;
+
+    font-size: 18px;
+    padding: 5px;
+
+    line-height: 1;
+}
+
+.toggle-password:hover {
+    opacity: 0.7;
+}

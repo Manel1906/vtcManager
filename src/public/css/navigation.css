@@ -1,0 +1,234 @@
+/* ============================================================
+   PHOTO PROFIL - ZOOM AU SURVOL
+   ============================================================ */
+
+#navUserPhoto.nav-user-photo {
+    width: 40px;
+    height: 40px;
+
+    min-width: 40px;
+    min-height: 40px;
+    max-width: 40px;
+    max-height: 40px;
+
+    object-fit: cover;
+    object-position: center;
+
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+
+    box-sizing: border-box;
+    display: block;
+
+    cursor: pointer;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+
+    position: relative;
+    z-index: 10;
+}
+
+#navUserPhoto.nav-user-photo:hover {
+    transform: scale(2);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+    z-index: 9999;
+}
+
+
+/* ============================================================
+   MODAL PHOTO PLEIN ÉCRAN
+   ============================================================ */
+
+.profile-photo-modal {
+    position: fixed;
+
+    inset: 0;
+
+    width: 100vw;
+    height: 100vh;
+
+    background: rgba(0, 0, 0, 0.88);
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 30px;
+
+    box-sizing: border-box;
+
+    z-index: 99999;
+
+    cursor: zoom-out;
+}
+
+/* Modal ouverte */
+
+.profile-photo-modal.active {
+    display: flex;
+}
+
+/* Grande photo */
+
+#profilePhotoFull {
+    max-width: 90vw;
+    max-height: 90vh;
+
+    width: auto;
+    height: auto;
+
+    object-fit: contain;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.6);
+
+    cursor: default;
+
+    animation: profilePhotoZoom 0.25s ease;
+}
+
+/* Animation d'ouverture */
+
+@keyframes profilePhotoZoom {
+
+    from {
+        opacity: 0;
+        transform: scale(0.75);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+}
+
+
+/* ============================================================
+   BOUTON FERMER
+   ============================================================ */
+
+.profile-photo-close {
+    position: absolute;
+
+    top: 20px;
+    right: 25px;
+
+    width: 45px;
+    height: 45px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.15);
+
+    color: white;
+
+    font-size: 32px;
+    line-height: 40px;
+
+    cursor: pointer;
+
+    z-index: 100000;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.profile-photo-close:hover {
+    background: rgba(255, 255, 255, 0.3);
+
+    transform: rotate(90deg);
+}
+
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 600px) {
+
+    .profile-photo-modal {
+        padding: 15px;
+    }
+
+    #profilePhotoFull {
+        max-width: 95vw;
+        max-height: 85vh;
+    }
+
+    .profile-photo-close {
+        top: 15px;
+        right: 15px;
+    }
+
+}
+/* ============================================================
+   BOUTON DÉCONNEXION - STYLE DASHBOARD
+   ============================================================ */
+
+.logout-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 10px 18px;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+
+    background: #ffffff;
+    color: #374151;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    white-space: nowrap;
+
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+/* Souris dessus */
+
+.logout-button:hover {
+    background: #f8fafc;
+    color: #dc2626;
+
+    border-color: #fecaca;
+
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+
+    transform: translateY(-1px);
+}
+
+/* Clic */
+
+.logout-button:active {
+    transform: translateY(0);
+
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+/* Focus clavier */
+
+.logout-button:focus-visible {
+    outline: 3px solid rgba(59, 130, 246, 0.25);
+    outline-offset: 2px;
+}

@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>VTC Manager - Comptes</title>
+
+    <link rel="icon" type="image/png" href="/logo.png">
+    <link rel="stylesheet" href="css/comptes.css">
+    <link rel="stylesheet" href="css/navigation.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header class="header">
+
+        <div class="header-brand">
+
+            <img
+                src="images/icons/icon-192.png"
+                alt="Logo VTC Manager"
+                class="header-logo"
+            >
+
+            <div>
+                <h1>VTC Manager</h1>
+
+                <p>
+                    Gestion des comptes utilisateurs
+                </p>
+            </div>
+
+        </div>
+
+
+        <nav
+            class="navigation"
+            aria-label="Navigation principale"
+        >
+
+            <a href="/dashboard">
+                🏠 Dashboard
+            </a>
+
+            <a href="/reservations">
+                📋 Réservations
+            </a>
+
+            <a href="/">
+                📄 Bon de réservation
+            </a>
+
+            <a
+                href="/comptes"
+                id="comptesNavLink"
+                class="active"
+            >
+                👥 Gestion des comptes
+            </a>
+
+
+            <!-- UTILISATEUR CONNECTÉ -->
+
+            <div
+                class="nav-user"
+                id="navUser"
+            >
+
+                <img
+                    id="navUserPhoto"
+                    src="/images/default-avatar.png"
+                    alt="Profil"
+                    class="nav-user-photo"
+                >
+
+                <span
+                    id="navUserName"
+                    class="nav-user-name"
+                >
+                    Utilisateur
+                </span>
+
+            </div>
+
+
+            <!-- DÉCONNEXION -->
+
+            <button
+                type="button"
+                id="logoutButton"
+                class="logout-button"
+            >
+                Déconnexion
+            </button>
+
+        </nav>
+
+    </header>
+
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
+    <main>
+
+        <!-- =================================================
+             COMPTE CONNECTÉ
+        ================================================== -->
+
+        <section class="section current-account">
+
+            <div class="profile-card">
+
+                <div
+                    class="profile-avatar"
+                    id="profileAvatar"
+                >
+                    <span id="profileInitials">U</span>
+                </div>
+
+
+                <div class="profile-info">
+
+                    <h2 id="currentUsername">
+                        Utilisateur
+                    </h2>
+
+                    <div
+                        class="profile-email"
+                        id="currentEmail"
+                    >
+                        email@example.com
+                    </div>
+
+                    <div
+                        class="profile-role"
+                        id="currentRole"
+                    >
+                        Utilisateur
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             CREATION COMPTE
+        ================================================== -->
+
+        <section class="section">
+
+            <h2 class="section-title">
+                Ajouter un utilisateur
+            </h2>
+
+
+            <form id="createUserForm">
+
+                <div class="columns">
+
+                    <!-- INFORMATIONS DU COMPTE -->
+
+                    <div class="column">
+
+                        <h2>
+                            Informations du compte
+                        </h2>
+
+
+                        <div class="form-group">
+
+                            <label for="newUserName">
+                                Nom de l'utilisateur
+                            </label>
+
+                            <input
+                                type="text"
+                                id="newUserName"
+                                name="nom"
+                                placeholder="Exemple : Jean Dupont"
+                                autocomplete="name"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="newUserEmail">
+                                Adresse email
+                            </label>
+
+                            <input
+                                type="email"
+                                id="newUserEmail"
+                                name="email"
+                                placeholder="exemple@gmail.com"
+                                autocomplete="email"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- PHOTO DE PROFIL -->
+
+                        <div class="form-group">
+
+                            <label for="newUserPhoto">
+                                Photo de profil
+                            </label>
+
+                            <input
+                                type="file"
+                                id="newUserPhoto"
+                                name="photo"
+                                accept="image/jpeg,image/png,image/webp"
+                            >
+
+                            <small class="form-help">
+                                JPG, PNG ou WEBP — 5 Mo maximum
+                            </small>
+
+                        </div>
+
+
+                        <div
+                            class="photo-preview-container"
+                            id="newUserPhotoPreviewContainer"
+                            style="display:none;"
+                        >
+
+                            <img
+                                id="newUserPhotoPreview"
+                                class="photo-preview"
+                                src=""
+                                alt="Aperçu de la photo"
+                            >
+
+                            <button
+                                type="button"
+                                id="removeNewUserPhoto"
+                                class="secondary"
+                            >
+                                Supprimer la photo
+                            </button>
+
+                        </div>
+
+
+                        <!-- MOT DE PASSE -->
+
+                        <div class="form-group">
+
+                            <label for="newUserPassword">
+                                Mot de passe
+                            </label>
+
+                            <input
+                                type="password"
+                                id="newUserPassword"
+                                name="password"
+                                placeholder="Minimum 8 caractères"
+                                autocomplete="new-password"
+                                minlength="8"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- AUTORISATIONS -->
+
+                    <div class="column">
+
+                        <h2>
+                            Autorisations
+                        </h2>
+
+
+                        <div class="form-group">
+
+                            <label for="newUserRole">
+                                Type de compte
+                            </label>
+
+                            <select
+                                id="newUserRole"
+                                name="role"
+                            >
+
+                                <option value="user">
+                                    Utilisateur
+                                </option>
+
+                                <option value="admin">
+                                    Administrateur
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="notice">
+
+                            <strong>Utilisateur :</strong>
+
+                            accès au dashboard et aux réservations.
+
+                            <br><br>
+
+                            <strong>Administrateur :</strong>
+
+                            accès à la gestion complète des comptes.
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ACTIONS -->
+
+                <div class="actions">
+
+                    <button
+                        type="submit"
+                        class="primary"
+                    >
+                        + Créer le compte
+                    </button>
+
+                </div>
+
+            </form>
+
+
+            <div
+                id="createMessage"
+                class="message"
+            ></div>
+
+        </section>
+
+
+        <!-- =================================================
+             LISTE DES COMPTES
+        ================================================== -->
+
+        <section class="section">
+
+            <h2 class="section-title">
+                Comptes utilisateurs
+            </h2>
+
+
+            <div class="table-container">
+
+                <table class="accounts-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Utilisateur
+                            </th>
+
+                            <th>
+                                Rôle
+                            </th>
+
+                            <th>
+                                Statut
+                            </th>
+
+                            <th>
+                                Création
+                            </th>
+
+                            <th>
+                                Actions
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="accountsTableBody">
+
+                        <tr>
+
+                            <td
+                                colspan="5"
+                                class="loading"
+                            >
+                                Chargement des comptes...
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             MODIFICATION MOT DE PASSE
+        ================================================== -->
+
+        <section
+            class="section password-section"
+            id="passwordSection"
+            style="display:none;"
+        >
+
+            <h2 class="section-title">
+                Modifier le mot de passe
+            </h2>
+
+
+            <div class="password-user">
+
+                Modification du mot de passe de :
+
+                <strong id="passwordUsername">
+                    -
+                </strong>
+
+            </div>
+
+
+            <form id="passwordForm">
+
+                <input
+                    type="hidden"
+                    id="passwordUserId"
+                >
+
+
+                <div class="password-form">
+
+                    <div>
+
+                        <label for="newPassword">
+                            Nouveau mot de passe
+                        </label>
+
+                        <input
+                            type="password"
+                            id="newPassword"
+                            placeholder="Minimum 8 caractères"
+                            autocomplete="new-password"
+                            minlength="8"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <label for="confirmPassword">
+                            Confirmation
+                        </label>
+
+                        <input
+                            type="password"
+                            id="confirmPassword"
+                            placeholder="Confirmer le mot de passe"
+                            autocomplete="new-password"
+                            minlength="8"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="actions">
+
+                    <button
+                        type="submit"
+                        class="primary"
+                    >
+                        Enregistrer le nouveau mot de passe
+                    </button>
+
+
+                    <button
+                        type="button"
+                        id="cancelPasswordBtn"
+                        class="secondary"
+                    >
+                        Annuler
+                    </button>
+
+                </div>
+
+            </form>
+
+
+            <div
+                id="passwordMessage"
+                class="message"
+            ></div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+====================================================== -->
+
+<script src="js/navigation.js"></script>
+<script src="js/comptes.js"></script>
+<!-- =====================================================
+     MODAL PHOTO PROFIL
+====================================================== -->
+
+<div id="profilePhotoModal" class="profile-photo-modal">
+
+    <button
+        type="button"
+        id="closeProfilePhoto"
+        class="profile-photo-close"
+        aria-label="Fermer"
+    >
+        ×
+    </button>
+
+    <img
+        id="profilePhotoFull"
+        src="/images/default-avatar.png"
+        alt="Photo de profil"
+    >
+
+</div>
+</body>
+</html>
